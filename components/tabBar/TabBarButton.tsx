@@ -12,7 +12,7 @@ interface TabBarButtonProps {
   onPress: () => void;
   onLongPress: () => void;
   icon: React.ReactElement;
-  color: string;
+  color?: string;
   isFocused: boolean;
 }
 const TabBarButton = ({
@@ -20,7 +20,6 @@ const TabBarButton = ({
   onLongPress,
   onPress,
   icon,
-  color,
   isFocused,
 }: TabBarButtonProps) => {
   const scale = useSharedValue(0);
@@ -56,7 +55,9 @@ const TabBarButton = ({
       style={styles.tabBarItem}
     >
       <Animated.View style={[animatedIconStyle]}>{icon}</Animated.View>
-      <Animated.Text style={[animatedTextStyle]}>{label}</Animated.Text>
+      <Animated.Text style={[animatedTextStyle, { fontFamily: "shortStack" }]}>
+        {label}
+      </Animated.Text>
     </Pressable>
   );
 };
@@ -69,5 +70,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 5,
+    fontFamily: "shortStack",
   },
 });

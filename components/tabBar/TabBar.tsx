@@ -8,6 +8,7 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
+import { Colors } from "../../constants/Colors";
 
 const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
   const [dimensions, setDimensions] = React.useState({
@@ -38,7 +39,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
           <Feather
             name="home"
             size={24}
-            color={isFocusing === "home" ? "#fff" : "#222"}
+            color={isFocusing === "home" ? Colors.black : Colors.black}
           />
         );
       case "explore":
@@ -46,7 +47,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
           <Feather
             name="compass"
             size={24}
-            color={isFocusing === "explore" ? "#fff" : "#222"}
+            color={isFocusing === "explore" ? Colors.black : Colors.black}
           />
         );
       case "message":
@@ -54,7 +55,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
           <Feather
             name="message-circle"
             size={24}
-            color={isFocusing === "message" ? "#fff" : "#222"}
+            color={isFocusing === "message" ? Colors.black : Colors.black}
           />
         );
       case "profile":
@@ -62,7 +63,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
           <Feather
             name="user"
             size={24}
-            color={isFocusing === "profile" ? "#fff" : "#222"}
+            color={isFocusing === "profile" ? Colors.black : Colors.black}
           />
         );
 
@@ -77,7 +78,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
           animatedStyle,
           {
             position: "absolute",
-            backgroundColor: "#673ab7",
+            backgroundColor: Colors.primary,
             borderRadius: 30,
             marginHorizontal: 10,
             width: buttonWidth - 18,
@@ -125,7 +126,6 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
             onLongPress={onLongPress}
             icon={getIcon(route.name, isFocused ? route.name : "")}
             label={label}
-            color={isFocused ? "#673ab7" : "#222"}
             isFocused={isFocused}
           />
         );
@@ -144,11 +144,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: Colors.white,
     marginHorizontal: "12.5%",
     paddingVertical: 15,
     borderRadius: 40,
-    shadowColor: "#000",
+    shadowColor: Colors.black,
     shadowOffset: { width: 0, height: 10 },
     shadowRadius: 10,
     shadowOpacity: 0.1,
