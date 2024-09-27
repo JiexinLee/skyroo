@@ -1,33 +1,66 @@
-import { SafeAreaView, StyleSheet, View, Text } from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Text,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Colors } from "../constants/Colors";
+import Input from "../components/Input";
 
 const SignUpPage = () => {
   const router = useRouter();
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [name, setName] = React.useState("");
+
   return (
-    <View style={styles.container}>
-      <View style={{ position: "absolute", top: 60, left: 20, zIndex: 99 }}>
-        <FontAwesome5
-          name="arrow-circle-left"
-          size={28}
-          color={Colors.black}
-          onPress={() => router.back()}
-        />
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
+        <View style={{ position: "absolute", top: 60, left: 20, zIndex: 99 }}>
+          <FontAwesome5
+            name="arrow-circle-left"
+            size={28}
+            color={Colors.black}
+            onPress={() => router.back()}
+          />
+        </View>
+        <SafeAreaView
+          style={{
+            flex: 1,
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: Colors.lightIndigo,
+            gap: 10,
+          }}
+        >
+          <Input
+            value={email}
+            type="email-address"
+            label="Email"
+            onChangeText={(value) => setEmail(value)}
+          />
+          <Input
+            value={password}
+            password
+            label="Password"
+            onChangeText={(value) => setPassword(value)}
+          />
+          <Input
+            value={confirmPassword}
+            type="visible-password"
+            label="Confirm Password"
+            onChangeText={(value) => setConfirmPassword(value)}
+          />
+        </SafeAreaView>
       </View>
-      <SafeAreaView
-        style={{
-          flex: 1,
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: Colors.lightIndigo,
-        }}
-      >
-        <Text>123</Text>
-      </SafeAreaView>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
