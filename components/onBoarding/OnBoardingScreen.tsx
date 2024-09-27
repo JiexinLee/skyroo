@@ -28,12 +28,6 @@ const bgs = [
 const OnBoardingScreen = () => {
   const scrollX = React.useRef(new Animated.Value(0)).current;
 
-  const onSignIn = () => {
-    console.log("sign in");
-  };
-  const onSignUp = () => {
-    console.log("sign up");
-  };
   return (
     <View style={styles.container}>
       <StatusBar hidden />
@@ -100,13 +94,22 @@ const OnBoardingScreen = () => {
         dataAmount={onBoardingData.length}
         width={width}
       />
-      <View style={{ position: "absolute", bottom: 50 }}>
+      <View style={{ position: "absolute", bottom: 80 }}>
         <Navigate
           navigateTo="/sign-in"
           title="Sign In"
           endIcon={
             <Feather name="arrow-right" size={24} color={Colors.white} />
           }
+        />
+      </View>
+      <View style={{ position: "absolute", bottom: 30 }}>
+        <Navigate
+          variant="link"
+          navigateTo="/sign-up"
+          title="no account?"
+          color={Colors.black}
+          size={170}
         />
       </View>
     </View>

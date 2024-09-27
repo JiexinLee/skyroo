@@ -25,7 +25,7 @@ const Square = ({ scrollX, height, width }: SquareProps) => {
       style={{
         width: height,
         height,
-        backgroundColor: Colors.white,
+        backgroundColor: "#fff",
         borderRadius: 86,
         position: "absolute",
         top: -height * 0.6,

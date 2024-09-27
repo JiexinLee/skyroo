@@ -8,6 +8,7 @@ interface ButtonProps {
   backgroundColor?: string;
   color?: string;
   endIcon?: React.ReactElement;
+  size?: number;
 }
 const Button = ({
   title,
@@ -15,14 +16,16 @@ const Button = ({
   onPress,
   backgroundColor = Colors.black,
   color = Colors.white,
+  size = 200,
 }: ButtonProps) => {
+  const fontSize = size / 10;
   return (
     <TouchableOpacity
       onPress={onPress}
       style={{
         backgroundColor: backgroundColor,
         borderRadius: 30,
-        width: 200,
+        width: size,
         padding: 10,
         alignItems: "center",
         display: "flex",
@@ -37,7 +40,7 @@ const Button = ({
           color,
           fontFamily: "shortStack",
           fontWeight: "600",
-          fontSize: 18,
+          fontSize,
         }}
       >
         {title}

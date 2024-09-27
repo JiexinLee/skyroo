@@ -5,10 +5,13 @@ import { Colors } from "../constants/Colors";
 
 interface NavigateProps {
   navigateTo: Href<string | object>;
+  variant?: "default" | "link";
   title: string;
   backgroundColor?: string;
   color?: string;
   endIcon?: React.ReactElement;
+  onPress?: () => void;
+  size?: number;
 }
 const Navigate = ({
   navigateTo,
@@ -16,15 +19,22 @@ const Navigate = ({
   backgroundColor = Colors.black,
   color = Colors.white,
   endIcon,
+  variant = "default",
+  onPress,
+  size = 200,
 }: NavigateProps) => {
+  const widthSize = size;
+  const fontSize = size / 10;
   return (
     <Link
       href={navigateTo}
       asChild
+      onPress={onPress}
       style={{
-        backgroundColor: backgroundColor,
+        backgroundColor:
+          variant === "default" ? backgroundColor : "transparent",
         borderRadius: 30,
-        width: 200,
+        width: widthSize,
         padding: 10,
         alignItems: "center",
       }}
@@ -43,7 +53,8 @@ const Navigate = ({
             color,
             fontFamily: "shortStack",
             fontWeight: "600",
-            fontSize: 18,
+            fontSize,
+            textDecorationLine: variant === "link" ? "underline" : "none",
           }}
         >
           {title}
