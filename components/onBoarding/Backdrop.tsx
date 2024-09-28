@@ -1,4 +1,4 @@
-import { Animated, StyleSheet, Text, View } from "react-native";
+import { Animated, StyleSheet } from "react-native";
 import React from "react";
 
 interface BackdropProps {
@@ -24,5 +24,3 @@ const Backdrop = ({ scrollX, backgroundColors, width }: BackdropProps) => {
 };
 
 export default Backdrop;
-
-const styles = StyleSheet.create({});

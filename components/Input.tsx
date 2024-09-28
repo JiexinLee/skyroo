@@ -1,7 +1,9 @@
 import {
   Animated,
   Easing,
+  KeyboardAvoidingView,
   KeyboardTypeOptions,
+  Platform,
   StyleSheet,
   TextInput,
 } from "react-native";
@@ -84,7 +86,10 @@ const Input = ({
     <Animated.View
       style={[
         styles.container,
-        { shadowColor: highlightColor, shadowOpacity: shadowDrop.current },
+        {
+          shadowColor: highlightColor,
+          shadowOpacity: shadowDrop.current,
+        },
       ]}
     >
       <Animated.View
