@@ -11,6 +11,7 @@ import { useRouter } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Colors } from "../constants/Colors";
 import Input from "../components/Input";
+import Divider from "../components/ Divider";
 
 const SignUpPage = () => {
   const router = useRouter();
@@ -58,6 +59,7 @@ const SignUpPage = () => {
             label="Confirm Password"
             onChangeText={(value) => setConfirmPassword(value)}
           />
+          <Divider length={80} color={Colors.black} text="Or" margin={15} />
         </SafeAreaView>
       </View>
     </TouchableWithoutFeedback>
