@@ -4,6 +4,7 @@ import {
   View,
   TouchableWithoutFeedback,
   Keyboard,
+  Text,
 } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
@@ -13,13 +14,32 @@ import Input from "../components/Input";
 import Divider from "../components/ Divider";
 import AvoidKeyboard from "../components/AvoidKeyboardView";
 import OAuthForm from "../components/auth/OAuthForm";
+import Button from "../components/Button";
+import { useAuthActions } from "@convex-dev/auth/react";
 
 const SignUpPage = () => {
   const router = useRouter();
+  const { signIn } = useAuthActions();
+  const [loading, setLoading] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [name, setName] = React.useState("");
+
+  const onSignUp = () => {
+    try {
+      setLoading(true);
+      signIn("password", {
+        email: email.toLowerCase(),
+        password,
+        flow: "signUp",
+      }).then(() => {
+        setLoading(false);
+      });
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -40,8 +60,10 @@ const SignUpPage = () => {
             alignItems: "center",
             backgroundColor: Colors.lightIndigo,
             gap: 10,
+            paddingBottom: 0,
           }}
         >
+          <Text style={styles.pageTitle}>Create Account</Text>
           <AvoidKeyboard style={styles.inputsContainer}>
             <Input
               value={name}
@@ -66,10 +88,16 @@ const SignUpPage = () => {
               label="Confirm Password"
               onChangeText={(value) => setConfirmPassword(value)}
             />
+            <Button
+              title="Continue"
+              onPress={onSignUp}
+              size="80%"
+              spaceY={10}
+              loading={loading}
+            />
+            <Divider length={80} color={Colors.black} text="Or" margin={15} />
           </AvoidKeyboard>
-          <Divider length={80} color={Colors.black} text="Or" margin={15} />
-          {/* <SignInWithGoogle /> */}
-          <OAuthForm />
+          <OAuthForm loading={loading} type="signUp" />
         </SafeAreaView>
       </View>
     </TouchableWithoutFeedback>
@@ -88,8 +116,16 @@ const styles = StyleSheet.create({
   },
   inputsContainer: {
     width: "100%",
+    height: "70%",
     justifyContent: "center",
     alignItems: "center",
     gap: 16,
+    marginTop: "auto",
+  },
+  pageTitle: {
+    fontFamily: "shortStack",
+    fontSize: 24,
+    position: "absolute",
+    top: "8%",
   },
 });

@@ -12,7 +12,11 @@ const redirectTo = makeRedirectUri({
   isTripleSlashed: true,
 });
 
-const SignInWithGoogle = () => {
+interface SignInWithGoogleProps {
+  loading?: boolean;
+  type: "signIn" | "signUp";
+}
+const SignInWithGoogle = ({ type, loading }: SignInWithGoogleProps) => {
   const { signIn } = useAuthActions();
   const handleSignIn = async () => {
     const { redirect } = await signIn("google", { redirectTo });
@@ -29,9 +33,10 @@ const SignInWithGoogle = () => {
   return (
     <Button
       fontSize={18}
-      title="Sign up with Google"
+      title={type === "signIn" ? "Sign in with Google" : "Sign up with Google"}
       onPress={handleSignIn}
       size="80%"
+      loading={loading}
       endIcon={<AntDesign name="google" size={24} color={Colors.white} />}
     />
   );
