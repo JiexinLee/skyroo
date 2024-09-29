@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { DimensionValue, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Colors } from "../constants/Colors";
 
@@ -8,7 +8,8 @@ interface ButtonProps {
   backgroundColor?: string;
   color?: string;
   endIcon?: React.ReactElement;
-  size?: number;
+  size?: DimensionValue;
+  fontSize?: number;
 }
 const Button = ({
   title,
@@ -17,8 +18,8 @@ const Button = ({
   backgroundColor = Colors.black,
   color = Colors.white,
   size = 200,
+  fontSize = 20,
 }: ButtonProps) => {
-  const fontSize = size / 10;
   return (
     <TouchableOpacity
       onPress={onPress}

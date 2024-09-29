@@ -2,11 +2,8 @@ import {
   SafeAreaView,
   StyleSheet,
   View,
-  Text,
   TouchableWithoutFeedback,
   Keyboard,
-  KeyboardAvoidingView,
-  Platform,
 } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
@@ -15,6 +12,7 @@ import { Colors } from "../constants/Colors";
 import Input from "../components/Input";
 import Divider from "../components/ Divider";
 import AvoidKeyboard from "../components/AvoidKeyboardView";
+import OAuthForm from "../components/auth/OAuthForm";
 
 const SignUpPage = () => {
   const router = useRouter();
@@ -70,6 +68,8 @@ const SignUpPage = () => {
             />
           </AvoidKeyboard>
           <Divider length={80} color={Colors.black} text="Or" margin={15} />
+          {/* <SignInWithGoogle /> */}
+          <OAuthForm />
         </SafeAreaView>
       </View>
     </TouchableWithoutFeedback>
