@@ -3,11 +3,12 @@ import { ConvexAuthProvider } from "@convex-dev/auth/react";
 import { ConvexReactClient } from "convex/react";
 import { Stack, useRouter, useSegments } from "expo-router";
 import * as SecureStore from "expo-secure-store";
-import { ActivityIndicator, View } from "react-native";
-import { Colors } from "../constants/Colors";
+import { View } from "react-native";
 import { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useCurrentUser } from "../hooks/useCurrentUser";
+import Loading from "../components/Loading";
+import { FrozenProvider, useFrozen } from "../context/freez-context";
 
 const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL!, {
   unsavedChangesWarning: false,
@@ -21,6 +22,7 @@ const secureStorage = {
 
 const InitialLayout = () => {
   const router = useRouter();
+  const { setIsWaiting } = useFrozen();
   const { user, loadingUser } = useCurrentUser();
   const segments = useSegments();
 
@@ -38,7 +40,7 @@ const InitialLayout = () => {
   if (loadingUser) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" color={Colors.black} />
+        <Loading duration={300} />
       </View>
     );
   }
@@ -59,7 +61,9 @@ export default function RootLayout() {
   return (
     <ConvexAuthProvider client={convex} storage={secureStorage}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <InitialLayout />
+        <FrozenProvider>
+          <InitialLayout />
+        </FrozenProvider>
       </GestureHandlerRootView>
     </ConvexAuthProvider>
   );

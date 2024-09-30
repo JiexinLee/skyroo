@@ -1,14 +1,14 @@
 import {
   Animated,
   Easing,
-  KeyboardAvoidingView,
   KeyboardTypeOptions,
-  Platform,
   StyleSheet,
   TextInput,
+  TouchableOpacity,
 } from "react-native";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Colors } from "../constants/Colors";
+import { Feather } from "@expo/vector-icons";
 
 interface InputProps {
   value: string;
@@ -29,9 +29,14 @@ const Input = ({
   highlightColor = Colors.black,
   onChangeText,
 }: InputProps) => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const translateY = useRef(new Animated.Value(0));
   const shadowDrop = useRef(new Animated.Value(0));
   const labelScale = useRef(new Animated.Value(1));
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prev) => !prev);
+  };
 
   const onFocus = () => {
     Animated.timing(translateY.current, {
@@ -117,9 +122,19 @@ const Input = ({
         style={styles.input}
         onFocus={onFocus}
         onBlur={onBlur}
-        keyboardType={type}
-        secureTextEntry={password}
+        keyboardType={password && passwordVisible ? "visible-password" : type}
+        secureTextEntry={password && !passwordVisible}
       />
+      {password && (
+        <TouchableOpacity onPress={togglePasswordVisibility}>
+          <Feather
+            name={passwordVisible ? "eye-off" : "eye"}
+            size={24}
+            color="black"
+            style={{ position: "absolute", right: 20, top: -40 }}
+          />
+        </TouchableOpacity>
+      )}
     </Animated.View>
   );
 };
@@ -144,9 +159,11 @@ const styles = StyleSheet.create({
   input: {
     padding: 20,
     paddingLeft: 30,
+    paddingRight: 60,
     color: Colors.black,
     fontSize: 16,
     fontFamily: "shortStack",
+    position: "relative",
   },
   labelContainer: {
     position: "absolute",

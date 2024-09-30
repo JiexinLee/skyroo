@@ -1,6 +1,7 @@
 import { useAuthActions } from "@convex-dev/auth/react";
 import Navigate from "../Navigate";
-import { Pressable, View, Text } from "react-native";
+import { TouchableOpacity, View, Text } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 
 export function SignOut() {
   const { signOut } = useAuthActions();
@@ -9,10 +10,9 @@ export function SignOut() {
   };
   return (
     <View style={{ marginTop: 200 }}>
-      <Pressable onPress={onSignOut}>
-        <Text>Sign Out</Text>
-      </Pressable>
-      {/* <Navigate title="Sign Out" navigateTo="/" onPress={onSignOut} />; */}
+      <TouchableOpacity onPress={onSignOut}>
+        <AntDesign name="logout" size={24} color="black" />
+      </TouchableOpacity>
     </View>
   );
 }

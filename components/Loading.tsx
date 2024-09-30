@@ -1,13 +1,29 @@
-import { ActivityIndicator } from "react-native";
 import React from "react";
-import { Colors } from "../constants/Colors";
+import Modal from "./modal/Modal";
+import { Image } from "react-native";
 
 interface LoadingProps {
-  size?: "small" | "large" | number;
-  color?: string;
+  onClose?: () => void;
+  duration?: number;
 }
-const Loading = ({ size = "large", color = Colors.black }: LoadingProps) => {
-  return <ActivityIndicator size={size} color={color} />;
+const Loading = ({ onClose, duration }: LoadingProps) => {
+  const onClosePlaceHolder = () => {};
+  return (
+    <Modal
+      label="Please wait ..."
+      onClose={onClose || onClosePlaceHolder}
+      show
+      width="50%"
+      height="20%"
+      duration={duration}
+      content={
+        <Image
+          source={require("../assets/images/rainbow.gif")}
+          style={{ width: 130, height: 130 }}
+        />
+      }
+    />
+  );
 };
 
 export default Loading;

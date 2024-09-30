@@ -1,7 +1,12 @@
-import { DimensionValue, Text, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  DimensionValue,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React from "react";
 import { Colors } from "../constants/Colors";
-import Loading from "./Loading";
 
 interface ButtonProps {
   onPress: () => void;
@@ -48,7 +53,7 @@ const Button = ({
       }}
     >
       {loading ? (
-        <Loading color={Colors.white} size="small" />
+        <ActivityIndicator size="small" color={Colors.white} />
       ) : (
         <>
           <Text

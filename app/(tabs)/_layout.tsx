@@ -1,12 +1,14 @@
 import React from "react";
 import { Tabs } from "expo-router";
 import TabBar from "../../components/tabBar/TabBar";
+import { useFrozen } from "../../context/freez-context";
 
 export default function TabLayout() {
+  const { isWaiting } = useFrozen();
   return (
     <Tabs
       screenOptions={{ headerShown: false }}
-      tabBar={(props) => <TabBar {...props} />}
+      tabBar={(props) => (isWaiting ? <></> : <TabBar {...props} />)}
     >
       <Tabs.Screen
         name="home"
