@@ -14,7 +14,13 @@ const Indicator = ({ scrollX, dataAmount, width }: IndicatorProps) => {
   );
 
   return (
-    <View style={{ position: "absolute", bottom: 150, flexDirection: "row" }}>
+    <View
+      style={{
+        position: "absolute",
+        bottom: 170,
+        flexDirection: "row",
+      }}
+    >
       {data.map((_, i) => {
         const inputRange = [(i - 1) * width, i * width, (i + 1) * width];
         const outputRange = [0.8, 1.4, 0.8];

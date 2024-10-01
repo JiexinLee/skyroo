@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, DimensionValue } from "react-native";
 import React from "react";
 import { Href, Link } from "expo-router";
 import { Colors } from "../constants/Colors";
@@ -11,7 +11,9 @@ interface NavigateProps {
   color?: string;
   endIcon?: React.ReactElement;
   onPress?: () => void;
-  size?: number;
+  size?: DimensionValue;
+  fontSize?: number;
+  height?: DimensionValue;
 }
 const Navigate = ({
   navigateTo,
@@ -21,10 +23,11 @@ const Navigate = ({
   endIcon,
   variant = "default",
   onPress,
+  height,
   size = 200,
+  fontSize = 20,
 }: NavigateProps) => {
   const widthSize = size;
-  const fontSize = size / 10;
   return (
     <Link
       href={navigateTo}
@@ -37,6 +40,7 @@ const Navigate = ({
         width: widthSize,
         padding: 10,
         alignItems: "center",
+        height,
       }}
     >
       <Pressable

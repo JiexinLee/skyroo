@@ -16,6 +16,7 @@ import AvoidKeyboard from "../components/AvoidKeyboardView";
 import OAuthForm from "../components/auth/OAuthForm";
 import Button from "../components/Button";
 import { useAuthActions } from "@convex-dev/auth/react";
+import SignUpForm from "../components/auth/SignUpForm";
 
 const SignUpPage = () => {
   const router = useRouter();
@@ -44,15 +45,15 @@ const SignUpPage = () => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
-        <View style={{ position: "absolute", top: 60, left: 20, zIndex: 99 }}>
+        {/* <View style={{ position: "absolute", top: 60, left: 20, zIndex: 99 }}>
           <FontAwesome5
             name="arrow-circle-left"
             size={28}
             color={Colors.black}
             onPress={() => router.back()}
           />
-        </View>
-        <SafeAreaView
+        </View> */}
+        {/* <SafeAreaView
           style={{
             flex: 1,
             width: "100%",
@@ -98,7 +99,8 @@ const SignUpPage = () => {
             <Divider length={80} color={Colors.black} text="Or" margin={15} />
           </AvoidKeyboard>
           <OAuthForm loading={loading} type="signUp" />
-        </SafeAreaView>
+        </SafeAreaView> */}
+        <SignUpForm />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -110,7 +112,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
+    // alignItems: "center",
+    padding: 10,
     position: "relative",
     backgroundColor: Colors.white,
   },

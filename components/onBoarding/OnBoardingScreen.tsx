@@ -94,22 +94,36 @@ const OnBoardingScreen = () => {
         dataAmount={onBoardingData.length}
         width={width}
       />
-      <View style={{ position: "absolute", bottom: 80 }}>
+      <View style={{ position: "absolute", bottom: 100 }}>
         <Navigate
-          navigateTo="/sign-in"
-          title="Sign In"
+          height={50}
+          size={260}
+          navigateTo="/sign-up"
+          title="Create Account"
           endIcon={
             <Feather name="arrow-right" size={24} color={Colors.white} />
           }
         />
       </View>
-      <View style={{ position: "absolute", bottom: 30 }}>
+      <View
+        style={{
+          position: "absolute",
+          bottom: 45,
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ fontFamily: "shortStack", fontSize: 14 }}>
+          Already have account?
+        </Text>
         <Navigate
           variant="link"
-          navigateTo="/sign-up"
-          title="no account?"
+          navigateTo="/sign-in"
+          title="Login"
           color={Colors.black}
-          size={170}
+          size={80}
+          fontSize={14}
         />
       </View>
     </View>
